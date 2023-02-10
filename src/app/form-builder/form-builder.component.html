@@ -1,0 +1,66 @@
+<div class="fb-wrap" *ngIf="!this.isShowAddQuestion">
+    <div class="list-question fx-1">
+        <div *ngFor="let question of this.questions; let parentIndex = index" class="mb-20">
+            <div *ngIf="question.type === 'paragraph'">
+                <div class="question">
+                    {{question.question}}
+                    <span *ngIf="question.required">*</span>
+                </div>
+                <textarea [(ngModel)]="question.answer" class="w-full" name="" id="" rows="5"></textarea>
+            </div>
+            <div *ngIf="question.type === 'checkbox-list'">
+                <div>
+                    <div class="question">
+                        {{question.question}}
+                        <span *ngIf="question.required">*</span>
+                    </div>
+                    <div class="answers-wrap" *ngFor="let checkbox of this.question.options; let index = index">
+                        <input type="checkbox" [id]="'answer-'+parentIndex+'-'+index" [(ngModel)]="checkbox.checked">
+                        <label [for]="'answer-'+parentIndex+'-'+index">{{checkbox.answer}}</label>
+                    </div>
+                    <div class="answers-wrap" *ngIf="question.allowSpecify">
+                        <input type="checkbox" id="answer-other" [(ngModel)]="this.question.other">
+                        <label for="answer-other">Other</label>
+                    </div>
+                    <textarea *ngIf="this.question.other" [(ngModel)]="question.otherAnswer" class="w-full" name=""
+                        id="" rows="5"></textarea>
+                </div>
+            </div>
+        </div>
+        <button class="btn btn-link" (click)="addQuestion()">Add New Question</button>
+    </div>
+    <button class="button-btn" (click)="reviewAnswers()">Review my answers ></button>
+</div>
+<div class="fb-wrap" *ngIf="this.isShowAddQuestion">
+    <div class="header">Add a New Questions
+    </div>
+    <div class="question-builder fx-1">
+        <form>
+            <label for="type">Select question type:</label>
+            <select id="type" name="type" name="question-type" class="w-full mt-10"
+                [(ngModel)]="this.questionBuilder.type" (change)="changeType($event)">
+                <option value="checkbox-list">Checkbox list</option>
+                <option value="paragraph">Paragraph</option>
+            </select>
+            <input name="question" class="w-full mb-20" type="text" placeholder="Type question here"
+                [(ngModel)]="this.questionBuilder.question">
+            <div *ngIf="questionBuilder.type === 'checkbox-list'">
+                <div *ngFor=" let item of questionBuilder.options; let index=index" class="mb-10">
+                    <input type="text" [name]="'answer' + index" class="w-full" [(ngModel)]="item.answer"
+                        placeholder="Add answers option">
+                </div>
+                <div class="mb-10">
+                    <button type="button" class="btn btn-blue" (click)="addAnswers()">+ Add another answers</button>
+                </div>
+                <div class="mb-5">
+                    <input [(ngModel)]="this.questionBuilder.allowSpecify" [ngModelOptions]="{standalone: true}"
+                        id="allow-specify" type="checkbox" name="allow-specify">
+                    <label for="allow-specify">Allow user to specify their own answer</label>
+                </div>
+            </div>
+            <input [(ngModel)]="this.questionBuilder.required" name="required" id="required" type="checkbox">
+            <label for="required">This field is required</label>
+        </form>
+    </div>
+    <button class="button-btn" (click)="onSubmit()">Submit</button>
+</div>

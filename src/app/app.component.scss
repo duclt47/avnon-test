@@ -1,0 +1,103 @@
+body {
+    font-family: sans-serif;
+
+    .fb-wrap {
+        display: flex;
+        width: 400px;
+        height: 600px;
+        overflow: auto;
+        border: 1px solid black;
+        flex-direction: column;
+        padding: 20px;
+
+        .header {
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .question {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .back-to-builder {
+            margin-top: auto;
+            margin-right: auto;
+        }
+
+        .question-builder {
+            select {
+                margin-bottom: 20px;
+            }
+        }
+
+        .fx-1 {
+            flex: 1;
+        }
+
+        .btn-link {
+            text-decoration: underline;
+        }
+
+        .btn {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            width: auto;
+            height: auto;
+        }
+
+        .btn-blue {
+            color: #0694f9;
+        }
+
+        .button-btn {
+            width: 200px;
+            height: 40px;
+            margin-left: auto;
+        }
+    }
+
+    input[type="checkbox"] {
+        width: 15px;
+        height: 15px;
+        margin: 0 5px 0 0;
+    }
+
+    button {
+        padding: 0;
+    }
+
+    label {
+        font-size: 14px;
+    }
+
+    input {
+        height: 20px;
+    }
+
+
+    .w-full {
+        width: 100%;
+    }
+
+    .mr-10 {
+        margin-right: 10px;
+    }
+
+    .mb-20 {
+        margin-bottom: 20px;
+    }
+
+    .mb-10 {
+        margin-bottom: 10px;
+    }
+
+    .mb-5 {
+        margin-bottom: 5px;
+    }
+
+    .mt-10 {
+        margin-top: 10px;
+    }
+}

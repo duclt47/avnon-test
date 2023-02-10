@@ -1,0 +1,14 @@
+<div class="fb-wrap">
+    <!-- <div class="header">Add a New Questions
+    </div> -->
+    <div class="answers fx-1" *ngIf="this.questions.length > 0">
+        <div *ngFor="let question of this.questions; let parentIndex = index" class="mb-20">
+            <div>
+                <div class="question">{{question.question}}</div>
+                <div class="answer" *ngIf="question.type==='paragraph'">{{question.answer}}</div>
+                <div class="answer" *ngIf="question.type==='checkbox-list'">{{generateAnswer(question)}}</div>
+            </div>
+        </div>
+    </div>
+    <button class="btn btn-link back-to-builder" (click)="backToFormBuilder()">Back to form builder</button>
+</div>
